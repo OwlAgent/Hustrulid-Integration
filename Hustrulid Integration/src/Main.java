@@ -64,20 +64,19 @@
  * inclusive).
  */
 
-import java.security.Permission;
 import java.util.Scanner;
 
 
 public class Main {
 
   public static void main(String[] args) {
-
+    
+    System.out.println("Creators Note: Warning the program has a god complex\n");
     //final means that the object String.greeting does not change
-    final String greeting = "Hello welcome to my integration project! \nWhat is your name?"; 
+    final String greeting = "Hello welcome to my integration project! \n\nWhat is your name?"; 
     System.out.println(greeting);
-    Scanner nameInput = new Scanner(System.in);
-    String name = nameInput.nextLine();
-    nameInput.close();
+    Scanner scanner = new Scanner(System.in);
+    String name = scanner.nextLine();
     
     int nameLength = name.length();
     boolean difficultyMode;
@@ -87,34 +86,175 @@ public class Main {
     else {
       difficultyMode = false;
     }
+    double choice = 0.0;
+    if(difficultyMode == false) {
+      System.out.println("\nPerchance do you wish to increase the difficulty by a "
+          + "teensy weensy amount?\nyes / no");
+      String requestAnswer = scanner.nextLine();
+      requestAnswer.toLowerCase();
+      if(requestAnswer.equals("yes")) {
+        choice =1.0;
+      }
+      else {
+      System.out.println("\nnormal mode activated... \n...you got lucky...\n");
+      }
+    }
+    byte castChoice = (byte)choice; //casting changes larger data types into smaller data types
+    if(castChoice == 1) {
+      difficultyMode = true;
+    }
     if(difficultyMode == true) {
-      System.out.println("Impossibly difficult omnipotent being mode activated \n"
+      System.out.println("\nYes!! Impossibly difficult omnipotent being mode activated!\n\n"
           + "I pity you so I will give you some advice:\n"
           + "\tYou will need paper\n"
-          + "\t\tOr a very good memory\n"
-          + "\t you can only enter a select a square once unless Flagging it\n"
+          + "\t Or a very good memory\n"
+          + "\tYou can only enter a select a square once unless Flagging it\n"
           + "\tOnly Flags will remain visible\n");
     }
-    else {
-      System.out.println("normal mode activated... \n...you got lucky...");
-    }
-
-    double probabilityOfMines = 0.2;
 
     // variables are locations in memory where data is stored
     // scope is whether the variables are limited within the method or within the class
-    int numberOfColumns;
-    String columnLengthRequest = "Please enter the number of columns";
-    String rowLengthRequest = "Please enter the number of rows";
-    Scanner dimensions = new Scanner(System.in);
-    System.out.println(columnLengthRequest);
-    numberOfColumns = dimensions.nextInt();
-    System.out.println(rowLengthRequest);
-    int numberOfRows = dimensions.nextInt();
-    dimensions.close();
-        
+    
+   
+    String numberOfColumnsRequest = "Please enter the number of columns";
+    String numberOfRowsRequest = "Please enter the number of rows";
+    String criticalResponce;
+    boolean anger = false;
+    boolean useElse = true;
+    System.out.println(numberOfColumnsRequest);
+    int numberOfColumns = scanner.nextInt();
+    if(difficultyMode == true) {
+      System.out.println("Do you respect and bow before the omnipotent being? \n"
+          + "\nyes/no");
+      criticalResponce = scanner.nextLine();
+      if(criticalResponce.equals("yes")) {
+        anger = false;
+        useElse = false;
+        System.out.println("...Wise Choice...");
+      }
+      else if(criticalResponce.equals("no")) {
+        anger = true;
+        useElse = false;
+        System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+      }
+      else if(useElse == true) {
+        System.out.println("Speek up puny human\n\nThe omnipotent being grows "
+            + "frustrated with your unclear words");
+        criticalResponce = scanner.nextLine();
+        if(criticalResponce.equals("yes")) {
+          anger = false;
+          useElse = false;
+          System.out.println("...Wise Choice...");
+        }
+        if(criticalResponce.equals("no")) {
+          anger = true;
+          useElse = false;
+          System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+        }
+        if (useElse == true) {
+          System.out.println("Speek up puny human!!!\n\nThe omnipotent being grows "
+              + "frustrated with your unclear words");
+          criticalResponce = scanner.nextLine();
+          if(criticalResponce.equals("yes")) {
+            anger = false;
+            useElse = false;
+            System.out.println("...Wise Choice...");
+          }
+          if(criticalResponce.equals("no")) {
+            anger = true;
+            useElse = false;
+            System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+          }
+          if(useElse == true) {
+            anger = true;
+            System.out.println("THE OMNIPOTENT BEING HAS HAD ENOUGH OF YOUR GAMES!!!\n\n"
+                + "YOU SHALL SUFFER FOR THIS INSOLENCE!!!");
+          }
+        }
+      }
+      if(anger == false) {  
+        while(numberOfColumns != 109) {
+          if(numberOfColumns < 109) {
+            System.out.println("Hahaha! you have no free will in this mode \nthe "
+                + "number of columns that the omnipotent being chose for you is much larger!");
+          }
+          if(numberOfColumns > 109) {
+            System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
+                + "number of columns that the omnipotent being chose for you is much smaller!");
+          }
+          System.out.println("Now try again and return the number of columns that "
+              + "the omnipotent being has chosen for you...");
+          numberOfColumns = scanner.nextInt();
+          System.out.println("The omnipotent being has chosen for you...\n"
+              + "...now procede...");
+        }
+      }
     }
+    System.out.println(numberOfRowsRequest);
+    int numberOfRows = scanner.nextInt();
+    if(difficultyMode = true) {
+      System.out.println("Do you respect and bow before the omnipotent being? \n"
+          + "\nyes/no");
+      criticalResponce = scanner.nextLine();
+      if(criticalResponce.equals("yes")) {
+        anger = false;
+        System.out.println("...Wise Choice...");
+      }
+      if(criticalResponce.equals("no")) {
+        anger = true;
+        System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+      }
+      else {
+        System.out.println("Speek up puny human\n\nThe omnipotent being grows "
+            + "frustrated with your unclear words");
+        criticalResponce = scanner.nextLine();
+        if(criticalResponce.equals("yes")) {
+          anger = false;
+          System.out.println("...Wise Choice...");
+        }
+        if(criticalResponce.equals("no")) {
+          anger = true;
+          System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+        }
+        else {
+          System.out.println("Speek up puny human!!!\n\nThe omnipotent being grows "
+              + "frustrated with your unclear words");
+          criticalResponce = scanner.nextLine();
+          if(criticalResponce.equals("yes")) {
+            anger = false;
+            System.out.println("...Wise Choice...");
+          }
+          if(criticalResponce.equals("no")) {
+            anger = true;
+            System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
+          }
+          else {
+            anger = true;
+            System.out.println("THE OMNIPOTENT BEING HAS HAD ENOUGH OF YOUR GAMES!!!\n\n"
+                + "YOU SHALL SUFFER FOR THIS INSOLENCE!!!");
+          }
+        }
+      }
+      if(anger == false) {
+        while(numberOfRows != 63) {
+          if(numberOfRows < 63) {
+            System.out.println("Hahaha! you have no free will in this mode \nthe "
+                + "number of rows that the omnipotent being chose for you is much larger!");
+          }
+          if(numberOfRows > 63) {
+            System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
+                + "number of rows that the omnipotent being chose for you is much smaller!");
+          }
+          System.out.println("Now try again and return the number of rows that "
+              + "the omnipotent being has chosen for you...");
+          numberOfRows = scanner.nextInt();
+          System.out.println("The omnipotent being has chosen for you...\n"
+              + "...now procede...");
+        }
+      }
+    }    
   }
+}
 
 /*
  * logic ideas: generate minefield as 25x20 with 99 mines generated randomly 
