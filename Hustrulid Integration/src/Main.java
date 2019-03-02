@@ -1,11 +1,17 @@
 // Stefan Anders Hustrulid
 
 /*
- * Integration project I am not sure yet but I think I might go for a program 
- * similar to Minesweeper
- * If I can learn how to get buttons in a grid shape to display, I just need to 
- * program the logic in
- * as Minesweeper is a game based on numerical logic
+ * Integration project: A compilation of logic/number games. currently contains a complete version 
+ * of basic Minesweeper, and Sudoku is in progress
+ */
+
+/*
+ * operator precedence:
+ *  unary: right to left
+ *  arithmetic: left to right
+ *  conditional: left to right
+ *  equality and conditional: not related
+ *  assignment: not related
  */
 
 /*
@@ -68,219 +74,50 @@ import java.util.Scanner;
 
 
 public class Main {
+  
+  static Scanner scanner = new Scanner(System.in);
 
-  public static void main(String[] args) {
+  //this is a header
+  //public is an access modifier
+  //void is the return type, meaning this method doesn't return anything
+  //method names should be in lowerCamelCase and be named with a verb
+  
+  
+  public static void main(String[] args) { 
+    Minesweeper minesweeper = new Minesweeper();
+    Sudoku sudoku = new Sudoku();
     
-    System.out.println("Creators Note: Warning the program has a god complex\n");
-    //final means that the object String.greeting does not change
-    final String greeting = "Hello welcome to my integration project! \n\nWhat is your name?"; 
-    System.out.println(greeting);
-    Scanner scanner = new Scanner(System.in);
-    String name = scanner.nextLine();
-    
-    int nameLength = name.length();
-    boolean difficultyMode;
-    if(nameLength % 2 ==0) {
-      difficultyMode = true;
-    }
-    else {
-      difficultyMode = false;
-    }
-    double choice = 0.0;
-    if(difficultyMode == false) {
-      System.out.println("\nPerchance do you wish to increase the difficulty by a "
-          + "teensy weensy amount?\nyes / no");
-      String requestAnswer = scanner.nextLine();
-      requestAnswer.toLowerCase();
-      if(requestAnswer.equals("yes")) {
-        choice =1.0;
+    String yesFinished = "yes";
+    boolean finished = false;
+    while(finished == false) {
+      System.out.println("Do you wish to play Minesweeper or Sudoku? Or are you finished? (yes/no)"
+          );
+      System.out.println("I recomend using debug on Sudoku with breakpoints in SudokuBoard lines 20, "
+          + "33, and 44");
+      String game = scanner.next();
+      switch(game) {
+        case "Minesweeper":
+          minesweeper.playMinesweeper();
+          break;
+        case "Sudoku":
+          sudoku.playSudoku();
+          break;
+        case "yes":
+          break;
+        case "no":
+          break;
+      }
+      // == checks to see if 2 objects are the same objects and occupy the same space in memory... 
+      //.equals() compares if the 2 objects are identical
+      if(game.compareTo(yesFinished) == 0) {
+        break;
       }
       else {
-      System.out.println("\nnormal mode activated... \n...you got lucky...\n");
+        continue;
       }
     }
-    byte castChoice = (byte)choice; //casting changes larger data types into smaller data types
-    if(castChoice == 1) {
-      difficultyMode = true;
-    }
-    if(difficultyMode == true) {
-      System.out.println("\nYes!! Impossibly difficult omnipotent being mode activated!\n\n"
-          + "I pity you so I will give you some advice:\n"
-          + "\tYou will need paper\n"
-          + "\t Or a very good memory\n"
-          + "\tYou can only enter a select a square once unless Flagging it\n"
-          + "\tOnly Flags will remain visible\n");
-    }
-
-    // variables are locations in memory where data is stored
-    // scope is whether the variables are limited within the method or within the class
-    
-   
-    String numberOfColumnsRequest = "Please enter the number of columns";
-    String numberOfRowsRequest = "Please enter the number of rows";
-    String criticalResponce;
-    boolean anger = false;
-    boolean useElse = true;
-    System.out.println(numberOfColumnsRequest);
-    int numberOfColumns = scanner.nextInt();
-    if(difficultyMode == true) {
-      System.out.println("Do you respect and bow before the omnipotent being? \n"
-          + "\nyes/no");
-      criticalResponce = scanner.nextLine();
-      if(criticalResponce.equals("yes")) {
-        anger = false;
-        useElse = false;
-        System.out.println("...Wise Choice...");
-      }
-      else if(criticalResponce.equals("no")) {
-        anger = true;
-        useElse = false;
-        System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-      }
-      else if(useElse == true) {
-        System.out.println("Speek up puny human\n\nThe omnipotent being grows "
-            + "frustrated with your unclear words");
-        criticalResponce = scanner.nextLine();
-        if(criticalResponce.equals("yes")) {
-          anger = false;
-          useElse = false;
-          System.out.println("...Wise Choice...");
-        }
-        if(criticalResponce.equals("no")) {
-          anger = true;
-          useElse = false;
-          System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-        }
-        if (useElse == true) {
-          System.out.println("Speek up puny human!!!\n\nThe omnipotent being grows "
-              + "frustrated with your unclear words");
-          criticalResponce = scanner.nextLine();
-          if(criticalResponce.equals("yes")) {
-            anger = false;
-            useElse = false;
-            System.out.println("...Wise Choice...");
-          }
-          if(criticalResponce.equals("no")) {
-            anger = true;
-            useElse = false;
-            System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-          }
-          if(useElse == true) {
-            anger = true;
-            System.out.println("THE OMNIPOTENT BEING HAS HAD ENOUGH OF YOUR GAMES!!!\n\n"
-                + "YOU SHALL SUFFER FOR THIS INSOLENCE!!!");
-          }
-        }
-      }
-      if(anger == false) {  
-        while(numberOfColumns != 109) {
-          if(numberOfColumns < 109) {
-            System.out.println("Hahaha! you have no free will in this mode \nthe "
-                + "number of columns that the omnipotent being chose for you is much larger!");
-          }
-          if(numberOfColumns > 109) {
-            System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
-                + "number of columns that the omnipotent being chose for you is much smaller!");
-          }
-          System.out.println("Now try again and return the number of columns that "
-              + "the omnipotent being has chosen for you...");
-          numberOfColumns = scanner.nextInt();
-          System.out.println("The omnipotent being has chosen for you...\n"
-              + "...now procede...");
-        }
-      }
-    }
-    System.out.println(numberOfRowsRequest);
-    int numberOfRows = scanner.nextInt();
-    if(difficultyMode = true) {
-      System.out.println("Do you respect and bow before the omnipotent being? \n"
-          + "\nyes/no");
-      criticalResponce = scanner.nextLine();
-      if(criticalResponce.equals("yes")) {
-        anger = false;
-        System.out.println("...Wise Choice...");
-      }
-      if(criticalResponce.equals("no")) {
-        anger = true;
-        System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-      }
-      else {
-        System.out.println("Speek up puny human\n\nThe omnipotent being grows "
-            + "frustrated with your unclear words");
-        criticalResponce = scanner.nextLine();
-        if(criticalResponce.equals("yes")) {
-          anger = false;
-          System.out.println("...Wise Choice...");
-        }
-        if(criticalResponce.equals("no")) {
-          anger = true;
-          System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-        }
-        else {
-          System.out.println("Speek up puny human!!!\n\nThe omnipotent being grows "
-              + "frustrated with your unclear words");
-          criticalResponce = scanner.nextLine();
-          if(criticalResponce.equals("yes")) {
-            anger = false;
-            System.out.println("...Wise Choice...");
-          }
-          if(criticalResponce.equals("no")) {
-            anger = true;
-            System.out.println("HOW DARE YOU! \n\nYOU SHALL SUFFER FOR THIS INSOLENCE!");
-          }
-          else {
-            anger = true;
-            System.out.println("THE OMNIPOTENT BEING HAS HAD ENOUGH OF YOUR GAMES!!!\n\n"
-                + "YOU SHALL SUFFER FOR THIS INSOLENCE!!!");
-          }
-        }
-      }
-      if(anger == false) {
-        while(numberOfRows != 63) {
-          if(numberOfRows < 63) {
-            System.out.println("Hahaha! you have no free will in this mode \nthe "
-                + "number of rows that the omnipotent being chose for you is much larger!");
-          }
-          if(numberOfRows > 63) {
-            System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
-                + "number of rows that the omnipotent being chose for you is much smaller!");
-          }
-          System.out.println("Now try again and return the number of rows that "
-              + "the omnipotent being has chosen for you...");
-          numberOfRows = scanner.nextInt();
-          System.out.println("The omnipotent being has chosen for you...\n"
-              + "...now procede...");
-        }
-      }
-    }    
   }
 }
-
-/*
- * logic ideas: generate minefield as 25x20 with 99 mines generated randomly 
- * 
- * using locations of mines program determines the number assigned to adjacent 
- * squares 
- * 
- * all squares will be displayed as HIDDEN (blank squares) until left clicked 
- * on. then they will display their number as an unrevealed square 
- * 
- * If a 0 square button is left clicked the surrounding will also be revealed, 
- * up to the inclusive bordering >0 squares 
- * 
- * If an unrevealed square is right clicked it will display F until right 
- * clicked again (It cannont be left clicked until unflagged) 
- * 
- * If left and right clicking buttons is not possible then perhaps drop down 
- * menus 
- * 
- * game ends when all numbered squares are revealed and all mines are flagged 
- * 
- * If the classic game does not incorperate all of the lessons then I can add 
- * my own twists and quirks to make sure it does. The way I am thinking of
- * setting this up is not based on graphics, only text and buttons placed in a 
- * matrix
- */
 
 
 
