@@ -6,12 +6,21 @@
  */
 
 /*
- * operator precedence:
- *  unary: right to left
- *  arithmetic: left to right
- *  conditional: left to right
- *  equality and conditional: not related
- *  assignment: not related
+ * operator precedence: closer to top is higher precedence
+ * expr++ expr--
+ * ++expr --expr +expr -expr ~ !
+ * * / %
+ * + -
+ * << >> >>>
+ * < > <= >= instanceof
+ * == !=
+ * &
+ * ^
+ * |
+ * &&
+ * ||
+ * ? :
+ * = += -= *= /= %= &= ^= |= <<= >>= >>>=
  */
 
 /*
@@ -72,7 +81,6 @@
 
 import java.util.Scanner;
 
-
 public class Main {
   
   static Scanner scanner = new Scanner(System.in);
@@ -81,7 +89,6 @@ public class Main {
   //public is an access modifier
   //void is the return type, meaning this method doesn't return anything
   //method names should be in lowerCamelCase and be named with a verb
-  
   
   public static void main(String[] args) { 
     Minesweeper minesweeper = new Minesweeper();
@@ -92,8 +99,10 @@ public class Main {
     while(finished == false) {
       System.out.println("Do you wish to play Minesweeper or Sudoku? Or are you finished? (yes/no)"
           );
-      System.out.println("I recomend using debug on Sudoku with breakpoints in SudokuBoard lines 20, "
-          + "33, and 44");
+      System.out.println("\n\nThe SudokuBoardV2 class will most likely produce a completely solved "
+          + "Sudoku board, however it does not always succeed, \nI have tried to get it to try again"
+          + "until it produces a complete and correct board but I am starting to confuse myself. \n"
+          + "do you have any suggestions?");
       String game = scanner.next();
       switch(game) {
         case "Minesweeper":
@@ -110,10 +119,10 @@ public class Main {
       // == checks to see if 2 objects are the same objects and occupy the same space in memory... 
       //.equals() compares if the 2 objects are identical
       if(game.compareTo(yesFinished) == 0) {
-        break;
+        break; // if a break is hit in a loop it will end the loop 
       }
       else {
-        continue;
+        continue; // if a continue is hit in a loop it will skip to the next iteration
       }
     }
   }
