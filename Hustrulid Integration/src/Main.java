@@ -102,7 +102,7 @@ public class Main {
       System.out.println("\n\nThe SudokuBoardV2 class will most likely produce a completely solved "
           + "Sudoku board, however it does not always succeed, \nI have tried to get it to try again"
           + "until it produces a complete and correct board but I am starting to confuse myself. \n"
-          + "do you have any suggestions?");
+          + "do you have any suggestions?\n");
       String game = scanner.next();
       switch(game) {
         case "Minesweeper":
