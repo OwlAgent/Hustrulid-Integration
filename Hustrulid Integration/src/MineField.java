@@ -6,83 +6,6 @@ public class MineField {
   private int[][] point;
   private static Random random = new Random();
   private static int[][] mine;
-  //I asked a programmer I know for advice on getting my methods to communicate... he decided to show 
-  //off and demonstrate how he would have written the program
-  //I see that the logic he used is different then mine but I think I will leave it up as a comment 
-  //for reference if I need it. at least I think I figured out how to get my methods to work.
-  /*
-  
-  boolean[][] mines;
-  int[][] surrounding;
-  boolean[][] exposed;
-  
-  MineField( int numberOfRows, int numberOfColumns, int numberOfMines) {
-    this.numberOfRows = numberOfRows;
-    this.numberOfColumns = numberOfColumns;
-    this.numberOfMines = numberOfMines;
-    
-    setMineField();
-  }
-  
-  public void setMineField() {
-    mines = new boolean[numberOfRows][numberOfColumns];
-    surrounding = new int[numberOfRows][numberOfColumns];
-    exposed = new boolean[numberOfRows][numberOfColumns];
-    
-    for (int i=0; i<numberOfMines; ) {
-      int xCoord = random.nextInt(numberOfColumns);
-      int yCoord = random.nextInt(numberOfRows);
-      if (mines[yCoord][xCoord] == false ) {
-        mines[yCoord][xCoord] = true;
-        i++;  // Maybe better way to do this ... later.
-      }
-    }
-    
-    for (int i=0; i<numberOfColumns; i++) {
-      for (int j=0; j<numberOfRows; j++) {
-        surrounding[i][j] = numberOfSurroudingMines(i,j);  
-        exposed[i][j] = false;
-      } 
-    }
-  }
-  
-  private int numberOfSurroudingMines(int y, int x) {
-    int count = 0;
-    for (int i=-1; i<=1; i++) {
-      for (int j=-1; j<=1; j++) {
-        int cellx = x + i;
-        int celly = y + j;
-        if (cellx >= 0 && cellx < numberOfColumns && celly >= 0 && celly < numberOfRows ) {
-         // if (cellx != x && celly != y) {
-            if (mines[celly][cellx] == true) {
-              count++;
-            }
-          //}
-        }
-      }
-    }
-    return count;
-  }
-  
-  public String PrintGrid() {
-    String str ="hello\n";
-    for (int j=0; j<numberOfColumns;j++) 
-    {
-      for (int i=0; i<numberOfRows;i++) 
-      {
-        if (mines[i][j] == true) {
-          str = str + "*";
-        }
-        else {
-          str = str + surrounding[i][j];
-        }
-      }
-      str = str + "\n";
-    }
-    str = str + "hello";
-    return str;
-  }
-  */
   
   public int[][] generateRandomCoordinate(int mineNumber, int numberOfColumns, int numberOfRows) {
     int X1Y2 = 1;
@@ -302,7 +225,6 @@ public class MineField {
           point[columnNumber-1][rowNumber]++;
         }
       }
-      //testGrid(point, numberOfColumns, numberOfRows);
       mineNumber++;
     }
     return point;
@@ -313,12 +235,6 @@ public class MineField {
       int i = 1;
       while(i<=numberOfColumns) {
         System.out.print(point[i][j] == 9 ? "* " : point[i][j] + " ");
-       // if(point[i][j] == 9) {
-     //     System.out.print("* ");
-     //   }
-      //  else {
-      //    System.out.print(point[i][j] + " ");
-     //   }
         i++;
       }
       System.out.print("\n");

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class PlayerInterface {
   static Scanner scanner = new Scanner(System.in);
   String[][] userInput;
+  boolean error = true;
   
   public void setInitialUserGrid(int numberOfColumns, int numberOfRows) {
     userInput = new String[numberOfColumns+1][numberOfRows+1];
@@ -49,15 +50,55 @@ public class PlayerInterface {
       setUserInputs(numberOfColumns, numberOfRows, point);
     }
     else {
-      int columnNumber = Integer.parseInt(columnNumberString);
-      System.out.println("You have chosed column number: " + Math.abs(columnNumber));
+      error = true;
+      int columnNumber = 0;
+      do {
+        try {
+          columnNumber = Integer.parseInt(columnNumberString);
+          if(columnNumber > numberOfColumns || columnNumber < 1) {
+            throw new ArrayIndexOutOfBoundsException();
+          }
+          System.out.println("You have chosed column number: " + Math.abs(columnNumber));
+          error = false;
+        }
+        catch(NumberFormatException e) {
+          System.out.println("Please enter a number");
+          columnNumberString = scanner.nextLine();
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+          System.out.println("Please try another column");
+          columnNumberString = scanner.nextLine();
+        }
+      }
+      while(error == true);
+      
       System.out.println("Please Enter the Row you wish to select");
       String rowNumberString = scanner.nextLine();
       if(rowNumberString.equals("esc")) {
         setUserInputs(numberOfColumns, numberOfRows, point);
       }
       else {
-        int rowNumber = Integer.parseInt(rowNumberString);
+        error = true;
+        int rowNumber = 0;
+        do {
+          try {
+            rowNumber = Integer.parseInt(rowNumberString);
+            if(rowNumber > numberOfRows || rowNumber < 1) {
+              throw new ArrayIndexOutOfBoundsException();
+            }
+            System.out.println("You have chosed column number: " + Math.abs(rowNumber));
+            error = false;
+          }
+          catch(NumberFormatException e) {
+            System.out.println("Please enter a number");
+            rowNumberString = scanner.nextLine();
+          }
+          catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Please try another row");
+            rowNumberString = scanner.nextLine();
+          }
+        }
+        while(error == true);
         System.out.println("You have chosed row number: " + Math.abs(rowNumber));
         if(userInput[columnNumber][rowNumber] == "Shown") {
           System.out.println("This square is already Shown... \nTry another square");
@@ -162,81 +203,6 @@ public class PlayerInterface {
     else {
       return;
     }
-    /* this long comment is what I tried before I did some research
-    //checks that point is equal to 0
-    if(point[columnNumber][rowNumber] == 0 && 
-        userInput[columnNumber][rowNumber].equals("Shown")) {
-      //checks if point is in top right corner
-      if(columnNumber == 1 && rowNumber == 1) { //top left corner
-        userInput[columnNumber+1][rowNumber] = "Shown";
-        userInput[columnNumber+1][rowNumber+1] = "Shown";
-        userInput[columnNumber][rowNumber+1] =  "Shown";
-      }
-      
-      else if(columnNumber == 1 && (rowNumber != 1 && rowNumber != numberOfRows)) { //left edge
-        userInput[columnNumber][rowNumber-1] = "Shown";
-        userInput[columnNumber+1][rowNumber-1] = "Shown";          
-        userInput[columnNumber+1][rowNumber] = "Shown";           
-        userInput[columnNumber+1][rowNumber+1] = "Shown";              
-        userInput[columnNumber][rowNumber+1] = "Shown";            
-      }
-      
-      else if(columnNumber == 1 && rowNumber == numberOfRows) { //bottom left corner
-        userInput[columnNumber][rowNumber-1] = "Shown";            
-        userInput[columnNumber+1][rowNumber-1] = "Shown";              
-        userInput[columnNumber+1][rowNumber] = "Shown";             
-      }
-      else if((columnNumber != 1 && columnNumber != numberOfColumns) && rowNumber == 1) { // top edge
-        userInput[columnNumber+1][rowNumber] = "Shown";              
-        userInput[columnNumber+1][rowNumber+1] = "Shown";             
-        userInput[columnNumber][rowNumber+1] = "Shown";             
-        userInput[columnNumber-1][rowNumber+1] = "Shown";              
-        userInput[columnNumber-1][rowNumber] = "Shown";              
-      }
-      
-      else if(columnNumber == numberOfColumns && rowNumber == 1) { //top right corner
-        userInput[columnNumber-1][rowNumber] = "Shown";             
-        userInput[columnNumber-1][rowNumber+1] = "Shown";              
-        userInput[columnNumber][rowNumber+1] = "Shown";              
-      }
-      
-      else if(columnNumber == numberOfColumns && (rowNumber != 1 && rowNumber != numberOfRows)) { 
-        //right edge
-        userInput[columnNumber][rowNumber-1] = "Shown";              
-        userInput[columnNumber-1][rowNumber-1] = "Shown";              
-        userInput[columnNumber-1][rowNumber] = "Shown";             
-        userInput[columnNumber-1][rowNumber+1] = "Shown";             
-        userInput[columnNumber][rowNumber+1] = "Shown";              
-      }
-      
-      else if(columnNumber == numberOfColumns && rowNumber == numberOfRows) { //bottom right corner
-        userInput[columnNumber-1][rowNumber] = "Shown";              
-        userInput[columnNumber-1][rowNumber-1] = "Shown";              
-        userInput[columnNumber][rowNumber-1] = "Shown";              
-      }
-      
-      else if((columnNumber != 1 && columnNumber != numberOfColumns) && rowNumber == numberOfRows) {
-        //bottom edge
-        userInput[columnNumber-1][rowNumber] = "Shown";
-        userInput[columnNumber-1][rowNumber-1] = "Shown";              
-        userInput[columnNumber][rowNumber-1] = "Shown";              
-        userInput[columnNumber+1][rowNumber-1] = "Shown";              
-        userInput[columnNumber+1][rowNumber] = "Shown";            
-      }
-      
-      else if((columnNumber != 1 && columnNumber != numberOfColumns) && (rowNumber != 1 && rowNumber 
-          != numberOfRows)) { //not on the edge or corner
-        userInput[columnNumber-1][rowNumber-1] = "Shown";              
-        userInput[columnNumber][rowNumber-1] = "Shown";              
-        userInput[columnNumber+1][rowNumber-1] = "Shown";             
-        userInput[columnNumber+1][rowNumber] = "Shown";              
-        userInput[columnNumber+1][rowNumber+1] = "Shown";              
-        userInput[columnNumber][rowNumber+1] = "Shown";             
-        userInput[columnNumber-1][rowNumber+1] = "Shown"; 
-        userInput[columnNumber-1][rowNumber] = "Shown";    
-      }
-    }
-    */
   }
   
   public String[][] getUserInputs(){

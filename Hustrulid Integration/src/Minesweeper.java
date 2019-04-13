@@ -10,7 +10,8 @@ public class Minesweeper {
     boolean difficultyMode = setup.getDifficultyMode();
     
     //establishes number of columns
-    setup.setNumberOfColumns/*method call*/(difficultyMode/*arguments*/);
+                            //arguments
+    setup.setNumberOfColumns(difficultyMode);//method call
     int numberOfColumns = setup.getNumberOfColumns();
     
     //establishes number of Rows
@@ -21,11 +22,6 @@ public class Minesweeper {
     setup.setNumberOfMines(difficultyMode);
     int numberOfMines = setup.getNumberOfMines();
     
-    System.out.println("the area of the minefield is: " + numberOfRows * numberOfColumns + "\n"
-        + "the probability of hitting a mine is: " + 100*numberOfMines/(numberOfRows * 
-            numberOfColumns) +"% \nthe remainder of the area divided by the number of mines is: "
-                + (numberOfRows*numberOfColumns)%numberOfMines);
-    
     //determines locations of mines
     mineField.setMinePositions(numberOfMines, numberOfColumns, numberOfRows);
     int[][] mine = mineField.getMinePositions();
@@ -34,7 +30,7 @@ public class Minesweeper {
     mineField.setGrid(mine, numberOfMines, numberOfColumns, numberOfRows);
     int[][] grid = mineField.getGrid();
     
-    mineField.testGrid(grid, numberOfColumns, numberOfRows);
+   // mineField.testGrid(grid, numberOfColumns, numberOfRows);
     
     //everything is hidden, player sees a blank minefield
     player.setInitialUserGrid(numberOfColumns, numberOfRows);
@@ -105,7 +101,5 @@ public class Minesweeper {
     else {
       System.out.println("Boom!!! try again");
     }
-    // variables are locations in memory where data is stored
-    // scope is whether the variables are limited within the method or within the class 
   }
 }

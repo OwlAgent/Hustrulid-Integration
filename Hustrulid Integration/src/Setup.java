@@ -1,4 +1,5 @@
 //Stefan Anders Hustrulid
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Setup {
@@ -9,12 +10,12 @@ public class Setup {
   static int numberOfColumns;
   static int numberOfRows;
   static int numberOfMines;
+  boolean error;
   
   public void setDifficultyMode() {
-    System.out.println("Creators Note: Warning the program has a god complex\n Sugestion: odd "
-        + "number of characters and no \n If you do not with to see the answer when you play please "
-        + "comment out mineField.testGrid(grid, numberOfColumns, numberOfRows); in the Minesweeper "
-        + "Class");
+    System.out.println("Creators Note: Warning the Minesweeper program may develope a god complex"
+        + " depending on your inputs \nSugestion: odd number of characters and no");
+    
     //final means that the object String.greeting does not change
     final String greeting = "Hello welcome to my integration project! \n\nWhat is your name?"; 
     System.out.println(greeting);
@@ -32,10 +33,16 @@ public class Setup {
           + "teensy weensy amount?\nyes / no");
       String requestAnswer = scanner.nextLine();
       requestAnswer.toLowerCase();
-      if(requestAnswer.equals("yes")) {
-        choice =1.0;
-      } else {
+      if(requestAnswer.equals("no")) {
         System.out.println("\nnormal mode activated... \n...you got lucky...\n");
+        choice =2.0;
+      } 
+      else if(requestAnswer.equals("yes")) {
+        choice = 1.0;
+      }
+      else {
+        System.out.println("\nDefault answer of \"yes\" inputed");
+        choice = 1.0;
       }
     }
     byte castChoice = (byte)choice; //casting changes larger data types into smaller data types
@@ -44,12 +51,7 @@ public class Setup {
     }
     
     if(difficultyMode == true) {
-      System.out.println("\nYes!! Impossibly difficult omnipotent being mode activated!\n\n"
-          + "I pity you so I will give you some advice:\n"
-          + "\tYou will need paper\n"
-          + "\t Or a very good memory\n"
-          + "\tYou can only enter a select a square once unless Flagging it\n"
-          + "\tOnly Flags will remain visible\n");
+      System.out.println("\nYes!! Impossibly difficult Omnipotent Being mode activated!\n");
     }
   }
   
@@ -60,22 +62,44 @@ public class Setup {
   public void setNumberOfColumns(boolean difficultyMode) {
     String numberOfColumnsRequest = "Please enter the number of columns";
     System.out.println(numberOfColumnsRequest);
-    numberOfColumns = scanner.nextInt();
+     error = true;
+    do { 
+      try {
+        numberOfColumns = scanner.nextInt();
+        error = false;
+      }
+      catch(InputMismatchException e) {
+        System.out.println("Please enter a number.");
+        scanner.next();
+      }
+    }
+    while(error == true);
     if(difficultyMode == true) {
       while(numberOfColumns != 109) {
         if(numberOfColumns < 109) {
-          System.out.println("Hahaha! you have no free will in this mode \nthe "
-              + "number of columns that the omnipotent being chose for you is much larger!");
+          System.out.println("Hahaha! you have no free will in this mode\n\nThe "
+              + "number of columns that the Omnipotent Being chose for you is much larger!");
         }
         if(numberOfColumns > 109) {
-          System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
-              + "number of columns that the omnipotent being chose for you is much smaller!");
+          System.out.println("\nHahaha! you have no free will in this mode\n\nFortunately the "
+              + "number of columns that the Omnipotent Being chose for you is much smaller!");
         }
-        System.out.println("Now try again and return the number of columns that "
-            + "the omnipotent being has chosen for you...");
-        numberOfColumns = scanner.nextInt();
+        System.out.println("\nNow try again and return the number of columns that "
+            + "the Omnipotent Being has chosen for you...");
+        error = true;
+        do { 
+          try {
+            numberOfColumns = scanner.nextInt();
+            error = false;
+          }
+          catch(InputMismatchException e) {
+            System.out.println("The Omnipotent Being demands that you enter a number.\n");
+            scanner.next();
+          }
+        }
+        while(error == true);
       }
-        System.out.println("The omnipotent being has chosen for you...\n"
+        System.out.println("The Omnipotent Being has chosen for you...\n"
             + "...now procede...");
     }
     if(difficultyMode == false) {
@@ -95,22 +119,44 @@ public class Setup {
   public void setNumberOfRows(boolean difficultyMode) {
     String numberOfRowsRequest = "Please enter the number of rows";
     System.out.println(numberOfRowsRequest);
-    numberOfRows = scanner.nextInt();
+    error = true;
+    do { 
+      try {
+        numberOfRows = scanner.nextInt();
+        error = false;
+      }
+      catch(InputMismatchException e) {
+        System.out.println("Please enter a number.");
+        scanner.next();
+      }
+    }
+    while(error == true);
     if(difficultyMode == true) {
       while(numberOfRows != 109) {
         if(numberOfRows < 109) {
-          System.out.println("Hahaha! you have no free will in this mode \nthe "
-              + "number of rows that the omnipotent being chose for you is much larger!");
+          System.out.println("Hahaha! you have no free will in this mode\n\nthe "
+              + "number of rows that the Omnipotent Being chose for you is much larger!");
         }
         if(numberOfRows > 109) {
-          System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
-              + "number of rows that the omnipotent being chose for you is much smaller!");
+          System.out.println("Hahaha! you have no free will in this mode\n\nFortunately the "
+              + "number of rows that the Omnipotent Being chose for you is much smaller!");
         }
-        System.out.println("Now try again and return the number of rows that "
-            + "the omnipotent being has chosen for you...");
-        numberOfRows = scanner.nextInt();
+        System.out.println("\nNow try again and return the number of rows that "
+            + "the Omnipotent Being has chosen for you...");
+        error = true;
+        do { 
+          try {
+            numberOfRows = scanner.nextInt();
+            error = false;
+          }
+          catch(InputMismatchException e) {
+            System.out.println("The Omnipotent Being demands that you enter a number.");
+            scanner.next();
+          }
+        }
+        while(error == true);
       }
-        System.out.println("The omnipotent being has chosen for you...\n"
+        System.out.println("The Omnipotent Being has chosen for you...\n"
             + "...now procede...");
     }
     if(difficultyMode == false) {
@@ -130,22 +176,48 @@ public class Setup {
   public void setNumberOfMines(boolean difficultyMode) {
     String numberOfMinesRequest = "Please enter the number of mines";
     System.out.println(numberOfMinesRequest);
-    numberOfMines = scanner.nextInt();
+    error = true;
+    do { 
+      try {
+        numberOfMines = scanner.nextInt();
+        if(numberOfMines > (numberOfColumns * numberOfRows)) {
+          System.out.println("too many mines!!! try again");
+          continue;
+        }
+        error = false;
+      }
+      catch(InputMismatchException e) {
+        System.out.println("Please enter a number.");
+        scanner.next();
+      }
+    }
+    while(error == true);
     if(difficultyMode == true) {
       while(numberOfMines != 3000) {
         if(numberOfMines < 3000) {
-          System.out.println("Hahaha! you have no free will in this mode \nthe "
-              + "number of mines that the omnipotent being chose for you is much larger!");
+          System.out.println("Hahaha! you have no free will in this mode\n\nthe "
+              + "number of mines that the Omnipotent Being chose for you is much larger!");
         }
         if(numberOfMines > 3000) {
-          System.out.println("Hahaha! you have no free will in this mode\nFortunately the "
-              + "number of mines that the omnipotent being chose for you is much smaller!");
+          System.out.println("Hahaha! you have no free will in this mode\n\nFortunately the "
+              + "number of mines that the Omnipotent Being chose for you is much smaller!");
         }
-        System.out.println("Now try again and return the number of mines that "
-            + "the omnipotent being has chosen for you...");
-        numberOfMines = scanner.nextInt();
+        System.out.println("\nNow try again and return the number of mines that "
+            + "the Omnipotent Being has chosen for you...");
+        error = true;
+        do { 
+          try {
+            numberOfMines = scanner.nextInt();
+            error = false;
+          }
+          catch(InputMismatchException e) {
+            System.out.println("The Omnipotent Being demands that you enter a number.");
+            scanner.next();
+          }
+        }
+        while(error == true);
       }
-        System.out.println("The omnipotent being has chosen for you...\n"
+        System.out.println("The Omnipotent Being has chosen for you...\n"
             + "...now procede...");
     }
     if(difficultyMode == false) {
