@@ -48,8 +48,8 @@ public class SudokuProblemMakerV2 {
     changeBoard = pointRemover.getChangeableSpotsBoard();
     setRemovablePoints();
     setProblemBoard();
-    sudokuBoard.printSolution(answerBoard);
-    sudokuBoard.printSolution(problemBoard);
+    //sudokuBoard.printSolution(answerBoard);
+    //sudokuBoard.printSolution(problemBoard);
   }
 
   public int[][] getAnswerBoard() {
@@ -85,11 +85,13 @@ public class SudokuProblemMakerV2 {
       int rowNumber = removablePoints.get(removablePoint) / answerBoard.length;
       pointRemover.setChangeableSpotsBoard(rowNumber, columnNumber, true);
       problemBoard[rowNumber][columnNumber] = 0;
-      if (!test1() || !test2()) {
+      HumanBasedSolver solver = new HumanBasedSolver(problemBoard);
+      solver.solveSudoku();
+      if (!solver.checkIfCorrect(answerBoard)) {
         pointRemover.setChangeableSpotsBoard(rowNumber, columnNumber, false);
         removablePoints.remove(removablePoint);
         problemBoard[rowNumber][columnNumber] = answerBoard[rowNumber][columnNumber];
-        continue;// if both conditions are not met do not execute the next code and try the next
+        continue;// if the problem is not solvable the next code and try the next
         // point
       }
       removablePoints.remove(removablePoint);

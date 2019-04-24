@@ -15,6 +15,6 @@ public class Sudoku {
     SudokuProblemMakerV2 sudoku = new SudokuProblemMakerV2();
     int[][] problem = sudoku.getProblemBoard();
     sudokuBoard.printSolution(problem);
-    System.out.println("There is a chance that this problem is solvable but it is not guarenteed.");
+    System.out.println("A very simple Sudoku Puzzle. Working on more complex patterns.");
   }
 }
