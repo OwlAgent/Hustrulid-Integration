@@ -48,7 +48,7 @@ public class SudokuProblemMakerV2 {
     changeBoard = pointRemover.getChangeableSpotsBoard();
     setRemovablePoints();
     setProblemBoard();
-    //sudokuBoard.printSolution(answerBoard);
+    sudokuBoard.printSolution(answerBoard);
     //sudokuBoard.printSolution(problemBoard);
   }
 
